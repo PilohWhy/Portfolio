@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-graphite-900: #111216;
+  --color-graphite-800: #1E1E24;
+  --color-graphite-700: #282A36;
+  --color-graphite-600: #343746;
+  --color-cyan: #56B6C2;
+  --color-cyan-400: #56B6C2;
+  --color-cyan-300: #7ECBD3;
+  --color-orange-400: #E5C07B;
+  --color-orange-300: #F0D49A;
+  --color-purple-400: #C678DD;
+  --color-purple-300: #D99AEA;
+  --font-sans: var(--font-geist), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-fira-code), var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Custom easing curves - Emil Kowalski's strong easings */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
+}
+
+body {
+  background-color: #111216;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='1.5' cy='1.5' r='1' fill='rgba(255, 255, 255, 0.04)'/%3E%3C/svg%3E");
+  color: #E2E8F0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Smooth scrolling with reduced-motion respect */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Selection color matching the theme */
+::selection {
+  background-color: rgba(86, 182, 194, 0.25);
+  color: #E2E8F0;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Focus visible styles for keyboard nav */
+*:focus-visible {
+  outline: 2px solid #56B6C2;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion - disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
