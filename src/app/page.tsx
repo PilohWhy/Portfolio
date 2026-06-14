@@ -58,7 +58,7 @@ const skillCategories = [
   {
     icon: GitBranch,
     title: 'Architecture',
-    skills: ['FSM', 'Clean Architecture', 'RPC Optimization', 'Promises'],
+    skills: ['FSM', 'Clean Architecture', 'RPC Optimization', 'Promise'],
     accentColor: 'text-cyan-400',
   },
 ];
@@ -135,6 +135,9 @@ export default function Home() {
         {/* Reviews */}
         <section id="reviews" className="pb-20">
           <GlitchText text="reviews.log" />
+          <p className="mt-3 text-sm font-mono text-gray-400">
+            {'// Please contact me (e.g., on Discord or via email) if you would like to leave a review.'}
+          </p>
 
           <div className="mt-8 columns-1 md:columns-2 gap-4 space-y-4">
             {reviews.map((review, i) => (
