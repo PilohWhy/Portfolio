@@ -6,7 +6,7 @@ import { ReviewCard } from '../components/ReviewCard';
 import { SkillCategory } from '../components/SkillCategory';
 import { GlitchText } from '../components/GlitchText';
 import { projects } from '../data/projects';
-import { Cpu, Code2, Calculator, GitBranch } from 'lucide-react';
+import { Cpu, Code2, Calculator, GitBranch, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const reviews = [
@@ -77,28 +77,77 @@ export default function Home() {
           <GlitchText text="about.luau" />
 
           <motion.div
-            className="mt-8 bg-graphite-800 border border-white/[0.06] rounded-xl p-6 md:p-8 max-w-3xl"
+            className="mt-8 max-w-5xl"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-gray-300 leading-relaxed text-sm md:text-base max-w-[65ch]">
-              Hey, I&apos;m <span className="text-cyan-400 font-bold font-mono">Piloh</span>. I&apos;ve been diving
-              into code for over{' '}
-              <span className="text-orange-400 font-mono font-bold">5 years</span>. My core passion lies in
-              engineering robust, highly functional game mechanics built from the ground up for future scalability.
-              I love digging into low-level architecture and relentlessly optimizing my code.
-            </p>
+            {/* ELEMENT 3: Linter Warning (Age Status) */}
+            <div className="flex items-start gap-3 bg-[#332B00]/40 border-l-4 border-l-[#E5C07B] border-y border-r border-white/[0.06] p-4 md:p-5 rounded-r-xl mb-8 shadow-lg relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#E5C07B]/10 to-transparent pointer-events-none" />
+              <div className="text-[#E5C07B] mt-0.5 relative z-10 flex-shrink-0">
+                <AlertTriangle size={20} />
+              </div>
+              <div className="relative z-10">
+                <h3 className="font-mono font-bold text-[#E5C07B] text-sm mb-1.5 uppercase tracking-wide">
+                  Compiler Warning: LINTER_UNDERAGE_DEV
+                </h3>
+                <p className="font-sans text-gray-300 text-sm leading-relaxed max-w-[70ch]">
+                  Notice: Currently an underage developer. Please keep this in mind for legal and contractual purposes regarding commissions or long-term commitments.
+                </p>
+              </div>
+            </div>
 
-            {/* Code comment quote */}
-            <div className="mt-6 pl-4 border-l-2 border-purple-400/30">
-              <p className="text-sm font-mono text-gray-500">
-                <span className="text-purple-400/70">{'--'}</span>{' '}
-                <span className="text-gray-400 italic">
-                  &quot;I&apos;d rather have a few bugs now than dozens later.&quot;
-                </span>
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+              {/* ELEMENT 1: Career Path (Short Bio) */}
+              <div className="lg:col-span-3 bg-graphite-800 border border-white/[0.06] rounded-xl p-6 md:p-8 flex flex-col justify-center shadow-2xl relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/[0.02] to-transparent pointer-events-none" />
+                <h3 className="font-mono text-purple-400 text-sm mb-4 font-bold tracking-wide">{'// Execution Context'}</h3>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                  Self-taught developer since late 2021, starting with Roblox Studio and C++. 
+                  After years of building foundational systems and successfully delivering custom commissions, 
+                  I am currently scaling up and transitioning to a stable part-time or full-time development role, but I don't mind still taking on commissions.
+                </p>
+                <div className="mt-6 pl-4 border-l-2 border-cyan-400/30">
+                  <p className="text-sm font-mono text-gray-500">
+                    <span className="text-cyan-400/70">{'-->'}</span>{' '}
+                    <span className="text-gray-400 italic">
+                      &quot;Engineering scalable, deterministic game systems within the Roblox ecosystem.&quot;
+                    </span>
+                    
+                  </p>
+                </div>
+              </div>
+
+              {/* ELEMENT 2: Developer Config (Bento Box) */}
+              <div className="lg:col-span-2 bg-[#0d1117] rounded-xl border border-white/[0.06] overflow-hidden shadow-2xl flex flex-col">
+                <div className="flex items-center gap-2 bg-[#161b22] px-4 py-2.5 border-b border-white/[0.04]">
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+                  </div>
+                  <span className="text-[11px] font-mono text-gray-400 ml-2">developer.config.json</span>
+                </div>
+                <div className="p-5 font-mono text-[11px] md:text-xs leading-[1.8] flex-grow flex flex-col justify-center overflow-x-auto">
+                  <div><span className="text-gray-500">{'{'}</span></div>
+                  <div className="pl-4">
+                    <span className="text-[#E5C07B]">&quot;availability&quot;</span><span className="text-gray-500">: </span><span className="text-[#98C379]">&quot;During the day (UTC+2) 7 days/week&quot;</span><span className="text-gray-500">,</span>
+                  </div>
+                  <div className="pl-4">
+                    <span className="text-[#E5C07B]">&quot;languages&quot;</span><span className="text-gray-500">: [</span><span className="text-[#98C379]">&quot;English&quot;</span><span className="text-gray-500">],</span>
+                  </div>
+                  <div className="pl-4">
+                    <span className="text-[#E5C07B]">&quot;fastest_contact&quot;</span><span className="text-gray-500">: {'{'}</span>
+                  </div>
+                  <div className="pl-8">
+                    <span className="text-cyan-400">&quot;discord&quot;</span><span className="text-gray-500">: </span><span className="text-[#98C379]">&quot;piloh&quot;</span>
+                  </div>
+                  <div className="pl-4"><span className="text-gray-500">{'}'}</span></div>
+                  <div><span className="text-gray-500">{'}'}</span></div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </section>
