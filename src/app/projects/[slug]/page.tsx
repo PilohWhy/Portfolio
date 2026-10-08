@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import { projects } from '../../../data/projects';
 import { ProjectCodeSection } from './ProjectCodeSection';
@@ -24,146 +24,92 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-dvh p-4 md:p-8 bg-graphite-900 font-sans text-gray-200">
-      <div className="max-w-5xl mx-auto">
-        {/* ── Top bar ── */}
-        <div className="bg-graphite-800 border border-white/10 rounded-t-lg overflow-hidden shadow-2xl">
-          {/* Window controls + filepath */}
-          <div className="flex items-center justify-between bg-graphite-900 px-4 py-2 border-b border-white/[0.06] text-xs font-mono select-none">
-            <div className="flex items-center gap-3">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
-                <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
-                <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
-              </div>
-              <Link
-                href="/"
-                className="text-cyan-400 hover:text-cyan-300 transition-colors"
-              >
-                <ChevronLeft className="w-3 h-3" /> workspace
-              </Link>
-            </div>
-            <span className="text-gray-500">
-              src/projects/<span className="text-orange-400">{project.slug}</span>/page.tsx
-            </span>
-          </div>
-
-          {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 bg-graphite-800 px-4 py-1.5 border-b border-white/5 text-xs font-mono text-gray-400">
-            <Link href="/" className="hover:text-cyan-400 transition-colors">
-              workspace
-            </Link>
-            <span>/</span>
-            <span>projects</span>
-            <span>/</span>
-            <span className="text-orange-400">{project.slug}</span>
-          </div>
+    <div className="min-h-dvh p-4 md:p-10 bg-[#0d1017] font-sans text-zinc-200">
+      <main className="max-w-3xl mx-auto space-y-6">
+        <div>
+          <Link
+            href="/"
+            data-testid="back-button"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors py-1.5"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to projects</span>
+          </Link>
         </div>
 
-        {/* ── Main content ── */}
-        <div className="bg-graphite-800 border-x border-b border-white/[0.06] rounded-b-lg p-6 md:p-10 shadow-2xl">
-          {/* Header */}
-          <header className="mb-8 pb-6 border-b border-white/5">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <h1 className="text-2xl md:text-4xl font-mono font-bold text-cyan-400">
-                {project.title}
-              </h1>
-              <span className="px-3 py-1 bg-orange-400/10 border border-orange-400/30 text-orange-400 rounded-md text-xs font-mono font-bold">
-                {project.category}
-              </span>
-            </div>
+        <article className="bg-[#121620] border border-zinc-800 rounded-lg p-6 md:p-8 space-y-7">
+          <header className="space-y-3 border-b border-zinc-800 pb-6">
+            <span className="text-xs font-mono text-zinc-400 uppercase tracking-wide">
+              {project.category}
+            </span>
 
-            {/* Role & Timeline grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-              <div className="bg-graphite-900 border border-white/[0.06] rounded-lg p-4">
-                <span className="text-[10px] font-mono text-purple-400 uppercase tracking-wider block mb-1">
-                  Role
-                </span>
-                <p className="text-sm font-mono text-gray-300">{project.role}</p>
+            <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-white">
+              {project.title}
+            </h1>
+
+            <div className="flex flex-wrap gap-4 text-xs font-mono text-zinc-400 pt-1">
+              <div>
+                <span className="text-zinc-500">Role: </span>
+                <span data-testid="project-role" className="text-zinc-300">{project.role}</span>
               </div>
-              <div className="bg-graphite-900 border border-white/[0.06] rounded-lg p-4">
-                <span className="text-[10px] font-mono text-purple-400 uppercase tracking-wider block mb-1">
-                  Timeline
-                </span>
-                <p className="text-sm font-mono text-gray-300">{project.timeline}</p>
+              <div>
+                <span className="text-zinc-500">Timeline: </span>
+                <span data-testid="project-timeline" className="text-zinc-300">{project.timeline}</span>
               </div>
             </div>
           </header>
 
-          {/* Project Image */}
+          {/* Media Visual */}
           {project.image && (
-            <section className="mb-8">
-              <h2 className="text-lg font-mono text-purple-400 mb-3 flex items-center gap-2">
-                <span className="text-gray-600">{'--'}</span> Preview
-              </h2>
-              <div className="bg-graphite-900 border border-white/[0.06] rounded-lg overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-2 bg-graphite-900 border-b border-white/[0.06] text-[10px] font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 inline-block" />
-                  <span className="text-gray-500">{project.slug}.png</span>
-                </div>
-                <div className="p-4">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={1200}
-                    height={675}
-                    className="w-full h-auto rounded-md"
-                    priority
-                  />
-                </div>
-              </div>
-            </section>
+            <div className="rounded overflow-hidden border border-zinc-800 bg-zinc-950">
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={1200}
+                height={675}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
           )}
 
-          {/* Code Preview */}
           {project.codeFile && (
             <ProjectCodeSection codeFile={project.codeFile} />
           )}
+
           {project.video && (
-            <section className="mb-8">
-              <h2 className="text-lg font-mono text-purple-400 mb-3 flex items-center gap-2">
-                <span className="text-gray-600">{'--'}</span> Demo
-              </h2>
-              <div className="bg-graphite-900 border border-white/[0.06] rounded-lg overflow-hidden">
-                {/* Mini tab bar */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-graphite-900 border-b border-white/[0.06] text-[10px] font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400 inline-block" />
-                  <span className="text-gray-500">{project.slug}.mp4</span>
-                </div>
-                <div className="p-4">
-                  <video
-                    className="w-full rounded-md"
-                    controls
-                    preload="metadata"
-                  >
-                    <source src={project.video} type="video/mp4" />
-                    Twoja przeglądarka nie obsługuje elementu video.
-                  </video>
-                </div>
-              </div>
-            </section>
+            <div className="rounded overflow-hidden border border-zinc-800 bg-zinc-950">
+              <video
+                className="w-full"
+                controls
+                preload="metadata"
+              >
+                <source src={project.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           )}
 
-          {/* Description */}
-          <section className="mb-8">
-            <h2 className="text-lg font-mono text-purple-400 mb-3 flex items-center gap-2">
-              <span className="text-gray-600">{'--'}</span> Description
+          {/* Overview */}
+          <section className="space-y-2">
+            <h2 className="text-base font-bold text-white">
+              Overview
             </h2>
-            <p className="text-gray-300 leading-relaxed text-sm md:text-base max-w-[65ch]">
+            <p data-testid="project-description" className="text-zinc-300 text-sm md:text-base leading-relaxed">
               {project.description}
             </p>
           </section>
 
           {/* Technologies */}
-          <section className="mb-8">
-            <h2 className="text-lg font-mono text-purple-400 mb-3 flex items-center gap-2">
-              <span className="text-gray-600">{'--'}</span> Technologies
+          <section className="space-y-2">
+            <h2 className="text-xs font-mono text-zinc-400 uppercase tracking-wide">
+              Stack
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div data-testid="project-technologies" className="flex flex-wrap gap-1.5 font-mono text-xs">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1.5 bg-graphite-900 border border-white/[0.06] text-cyan-400 rounded-md font-mono text-xs hover:border-cyan-400/30 transition-colors"
+                  className="px-2 py-0.5 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded"
                 >
                   {tech}
                 </span>
@@ -171,69 +117,46 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Challenges & Solutions grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {/* Challenges */}
-            <section className="bg-graphite-900 border border-white/[0.06] rounded-lg p-5">
-              <h2 className="text-sm font-mono text-orange-400 mb-3 flex items-center gap-2 font-bold">
-                <span className="w-2 h-2 rounded-full bg-orange-400 inline-block" />
-                Challenges
-              </h2>
-              <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[65ch]">
+          {/* Challenges & Solutions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-zinc-800">
+            <div className="p-4 bg-zinc-900/60 border border-zinc-800/80 rounded space-y-1.5">
+              <h3 className="text-xs font-mono font-semibold text-zinc-300 uppercase">
+                The Hard Part
+              </h3>
+              <p data-testid="project-challenges" className="text-zinc-400 text-xs md:text-sm leading-relaxed">
                 {project.challenges}
               </p>
-            </section>
+            </div>
 
-            {/* Solutions */}
-            <section className="bg-graphite-900 border border-white/[0.06] rounded-lg p-5">
-              <h2 className="text-sm font-mono text-green-400 mb-3 flex items-center gap-2 font-bold">
-                <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
-                Solutions
-              </h2>
-              <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[65ch]">
+            <div className="p-4 bg-zinc-900/60 border border-zinc-800/80 rounded space-y-1.5">
+              <h3 className="text-xs font-mono font-semibold text-zinc-300 uppercase">
+                How It Was Handled
+              </h3>
+              <p data-testid="project-solutions" className="text-zinc-400 text-xs md:text-sm leading-relaxed">
                 {project.solutions}
               </p>
-            </section>
+            </div>
           </div>
 
-          {/* Code Snippet */}
-          {project.snippet && (
-            <section>
-              <h2 className="text-lg font-mono text-purple-400 mb-3 flex items-center gap-2">
-                <span className="text-gray-600">{'--'}</span> Snippet
-              </h2>
-              <div className="bg-graphite-900 border border-white/[0.06] rounded-lg overflow-hidden">
-                {/* Mini tab bar */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-graphite-900 border-b border-white/[0.06] text-[10px] font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 inline-block" />
-                  <span className="text-gray-500">{project.slug}.luau</span>
-                </div>
-                <pre className="p-5 overflow-x-auto text-xs md:text-sm font-mono text-orange-400 leading-relaxed scrollbar-thin">
-                  <code>{project.snippet}</code>
-                </pre>
-              </div>
-            </section>
-          )}
-
-          {/* Back link */}
-          <div className="mt-10 pt-6 border-t border-white/5">
+          <div className="pt-4 border-t border-zinc-800 flex justify-between items-center text-xs">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-cyan-400 font-mono text-sm hover:text-cyan-300 transition-colors active:scale-[0.97]"
+              className="text-zinc-400 hover:text-white transition-colors"
             >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Return to workspace</span>
+              &larr; Back to all projects
             </Link>
-          </div>
-        </div>
 
-        {/* Footer */}
-        <div className="mt-6 text-center">
-          <p className="text-xs font-mono text-gray-600">
-            {'// EOF - Built with Next.js, Tailwind CSS & Framer Motion'}
-          </p>
-        </div>
-      </div>
+            <a
+              href="https://discord.com/users/piloh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-500 hover:text-zinc-300 font-mono transition-colors"
+            >
+              Discord: piloh
+            </a>
+          </div>
+        </article>
+      </main>
     </div>
   );
 }

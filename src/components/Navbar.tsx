@@ -4,11 +4,10 @@ import { motion } from 'framer-motion';
 import { useState, useCallback, useEffect } from 'react';
 
 const tabs = [
-  { href: '#about', label: 'about.luau', color: 'text-cyan-400', borderColor: 'border-cyan-400' },
-  { href: '#skills', label: 'skills.config', color: 'text-purple-400', borderColor: 'border-purple-400' },
-  { href: '#projects', label: 'projects.json', color: 'text-orange-400', borderColor: 'border-orange-400' },
-  { href: '#reviews', label: 'reviews.log', color: 'text-cyan-400', borderColor: 'border-cyan-400' },
-  { href: '#contact', label: 'contact.sh', color: 'text-purple-400', borderColor: 'border-purple-400' },
+  { id: 'about', href: '#about', label: 'About', testId: 'nav-link-about' },
+  { id: 'projects', href: '#projects', label: 'Projects', testId: 'nav-link-projects' },
+  { id: 'skills', href: '#skills', label: 'Skills', testId: 'nav-link-skills' },
+  { id: 'contact', href: '#contact', label: 'Contact', testId: 'nav-link-contact' },
 ];
 
 function easeInOutCubic(t: number): number {
@@ -39,9 +38,8 @@ function smoothScrollTo(targetY: number, duration = 600) {
 export function Navbar() {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Track active section on scroll
   useEffect(() => {
-    const sectionIds = tabs.map((t) => t.href.replace('#', ''));
+    const sectionIds = tabs.map((t) => t.id);
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -73,57 +71,50 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.div
-      className="max-w-7xl mx-auto bg-graphite-800 border border-white/[0.06] rounded-t-lg overflow-hidden shadow-lg shadow-black/20 mb-8"
-      initial={{ opacity: 0, y: -16 }}
+    <motion.header
+      className="bg-[#121620] border border-zinc-800 rounded-lg p-3 shadow-md"
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.3 }}
     >
-      <nav className="flex items-center justify-between bg-graphite-900 px-4 py-2 border-b border-white/[0.06] text-xs font-mono select-none">
-        {/* macOS window controls */}
-        <div className="flex gap-1.5 mr-4">
-          <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
-          <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
-          <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
+      <nav aria-label="Main Navigation" className="flex items-center justify-between text-sm select-none">
+        {/* Brand / Logo with Real Avatar */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-zinc-700 flex-shrink-0 bg-zinc-900">
+            <img
+              src="/images/avatar.webp"
+              alt="Piloh"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-semibold text-zinc-100 text-sm">Piloh</span>
+            <span className="text-[11px] text-zinc-400 font-mono">Game Systems & Low-Level Dev</span>
+          </div>
         </div>
 
-        {/* Editor Tabs */}
-        <div className="flex gap-0.5 overflow-x-auto">
+        {/* Navigation Links */}
+        <div className="flex items-center gap-1 md:gap-2">
           {tabs.map((tab, i) => (
-            <button
+            <a
               key={tab.href}
-              type="button"
-              onClick={() => handleTabClick(i, tab.href)}
-              className={`px-3 py-1.5 whitespace-nowrap transition-all duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-t-md active:scale-[0.97] ${
+              href={tab.href}
+              data-testid={tab.testId}
+              onClick={(e) => {
+                e.preventDefault();
+                handleTabClick(i, tab.href);
+              }}
+              className={`px-3 py-1.5 rounded text-xs md:text-sm transition-colors font-medium ${
                 activeTab === i
-                  ? `bg-graphite-800 ${tab.color} border-t-2 ${tab.borderColor} font-bold`
-                  : `bg-transparent text-gray-500 border-t-2 border-transparent hover:bg-white/[0.04] hover:text-gray-400`
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-850'
               }`}
             >
               {tab.label}
-            </button>
+            </a>
           ))}
         </div>
-
-        {/* Decorative tokens */}
-        <div className="hidden md:flex gap-3 text-gray-600 font-semibold pr-2">
-          <span className="hover:text-cyan-400 cursor-default transition-colors duration-150">export</span>
-          <span className="hover:text-purple-400 cursor-default transition-colors duration-150 font-bold">import</span>
-          <span className="hover:text-orange-400 cursor-default transition-colors duration-150">function</span>
-          <span className="hover:text-cyan-400 cursor-default transition-colors duration-150">local</span>
-        </div>
       </nav>
-
-      {/* Breadcrumbs */}
-      <div className="flex items-center gap-2 bg-graphite-800 px-4 py-1.5 border-b border-white/[0.04] text-xs font-mono text-gray-500">
-        <span>workspace</span>
-        <span className="text-gray-700">/</span>
-        <span>src</span>
-        <span className="text-gray-700">/</span>
-        <span className="text-cyan-400">piloh</span>
-        <span className="text-gray-700">/</span>
-        <span className="text-orange-400">portfolio</span>
-      </div>
-    </motion.div>
+    </motion.header>
   );
 }
