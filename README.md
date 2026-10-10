@@ -22,6 +22,12 @@ I'm **Piloh** — game systems and low-level programmer (C++, Luau / Roblox). 5+
 - **Deterministic Melee Combat:** Fast, responsive combat controller overriding default physics with custom momentum, directional cone checks, and state-machine combo chains.
 - **Locomotion & Animation Controller:** Seamless blending across 30+ animations with custom momentum and active track pruning.
 
+## Why Work With Me?
+- **Programmer by trade (Technik Programista):** Formal software background. Strong grasp of memory management, low-level data structures, and how code runs on real hardware.
+- **Pushing engine limits:** Interested in deep technical challenges on Roblox. I build systems people assume aren't possible on the platform.
+- **Great in a team:** Fast comms, zero ego, clean git workflow. I easily adapt to existing codebases and team setups.
+- **Maintainable code:** Direct, clean architecture that actually lasts without spaghetti workarounds.
+
 ## Contact
 - **Discord:** `piloh`
 - **Email:** [piloh8907@gmail.com](mailto:piloh8907@gmail.com)

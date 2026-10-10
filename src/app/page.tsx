@@ -53,7 +53,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Funny Cat GIF */}
+          {/* Chill Cat GIF */}
           <div className="flex items-center gap-4 p-4 bg-[#121620] border border-zinc-800 rounded-lg">
             <img
               src="/images/cat-no.gif"
@@ -62,10 +62,10 @@ export default function Home() {
             />
             <div className="space-y-0.5">
               <p className="font-semibold text-zinc-200 text-sm">
-                Senior Code Reviewer
+                cat says no
               </p>
               <p className="text-zinc-400 text-xs md:text-sm">
-                Cat strictly says NO to memory leaks, unanchored parts, frame drops, and overcomplicated wrappers.
+                no spaghetti code, no 20 fps lag, no memory leaks. keep it clean and fast.
               </p>
             </div>
           </div>
@@ -83,6 +83,53 @@ export default function Home() {
             {projects.map((project, i) => (
               <ProjectCard key={project.id} project={project} index={i} />
             ))}
+          </div>
+        </section>
+
+        {/* Why Work With Me */}
+        <section id="why-me" className="space-y-5 scroll-mt-24">
+          <div className="border-b border-zinc-800 pb-2.5">
+            <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+              Why work with me?
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div className="p-4 bg-[#121620] border border-zinc-800 rounded-lg space-y-1.5">
+              <h3 className="text-sm font-semibold text-zinc-100">
+                Programmer by trade (Technik Programista)
+              </h3>
+              <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
+                I have a formal software education, not just random tutorial knowledge. I understand memory management, low-level data structures, and how code actually executes on the hardware.
+              </p>
+            </div>
+
+            <div className="p-4 bg-[#121620] border border-zinc-800 rounded-lg space-y-1.5">
+              <h3 className="text-sm font-semibold text-zinc-100">
+                Pushing Roblox past its usual limits
+              </h3>
+              <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
+                I focus on the deep technical side that most developers shy away from. I like tackling things people assume the engine can&apos;t do—like 80k-voxel multi-threaded terrain or custom physics math.
+              </p>
+            </div>
+
+            <div className="p-4 bg-[#121620] border border-zinc-800 rounded-lg space-y-1.5">
+              <h3 className="text-sm font-semibold text-zinc-100">
+                Easy to work with in a team
+              </h3>
+              <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
+                Zero ego. Fast and direct communication on Discord, clean git habits, and I adapt to whatever tools or workflows your team already has in place.
+              </p>
+            </div>
+
+            <div className="p-4 bg-[#121620] border border-zinc-800 rounded-lg space-y-1.5">
+              <h3 className="text-sm font-semibold text-zinc-100">
+                Code you can actually maintain
+              </h3>
+              <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
+                I write clean, direct code that doesn&apos;t fall apart the moment another developer touches it. No bloated over-engineering or fragile spaghetti hacks.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -164,7 +211,7 @@ export default function Home() {
                 <ExternalLink size={16} className="text-zinc-400 group-hover:text-white" />
                 <div>
                   <span className="font-medium text-zinc-200 block text-sm">Roblox</span>
-                  <span className="text-xs text-zinc-500 font-mono">1310143767</span>
+                  <span className="text-xs text-zinc-500 font-mono">piloh</span>
                 </div>
               </div>
               <ArrowUpRight size={14} className="text-zinc-600 group-hover:text-zinc-300" />
