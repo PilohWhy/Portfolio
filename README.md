@@ -25,5 +25,5 @@ I'm **Piloh** — game systems and low-level programmer (C++, Luau / Roblox). 5+
 ## Contact
 - **Discord:** `piloh`
 - **Email:** [piloh8907@gmail.com](mailto:piloh8907@gmail.com)
-- **Roblox:** [Profile](https://www.roblox.com/users/1310143767/profile)
+- **Roblox:** [piloh](https://www.roblox.com/users/1310143767/profile)
 - **GitHub:** [@PilohWhy](https://github.com/PilohWhy)
