@@ -97,10 +97,10 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div className="p-4 bg-[#121620] border border-zinc-800 rounded-lg space-y-1.5">
               <h3 className="text-sm font-semibold text-zinc-100">
-                Programmer by trade (Technik Programista)
+                Studying software engineering
               </h3>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                Formal education in software development. Strong grasp of memory management, low-level data structures, and how code executes on real hardware.
+                Currently attending a specialized technical school focused on software development. Gives me a solid daily foundation in computer architecture, memory layout, and low-level data structures.
               </p>
             </div>
 
