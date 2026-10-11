@@ -9,7 +9,7 @@ My personal website and developer portfolio.
 </p>
 
 ## About
-I'm **Piloh** — game systems and low-level programmer (C++, Luau / Roblox). 5+ years writing code. I mainly work on custom engines, procedural worlds, and multiplayer physics where performance actually matters.
+I'm **Piloh**, a game systems and low-level programmer (C++, Luau / Roblox) with over 5 years of experience. I focus on custom engines, procedural worlds, and multiplayer systems where performance and clean architecture matter.
 
 <p align="center">
   <img src="public/images/cat-no.gif" alt="Cat says no" width="180" />

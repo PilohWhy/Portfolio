@@ -46,10 +46,10 @@ export default function Home() {
 
           <div className="p-6 bg-[#121620] border border-zinc-800 rounded-lg space-y-3.5 leading-relaxed text-sm md:text-base text-zinc-300">
             <p data-testid="about-text">
-              Hey, I&apos;m Piloh. I&apos;ve been coding for over 5 years, mostly focusing on low-level systems, custom engines, and game mechanics in C++ and Luau. I like building things from scratch and understanding what actually happens under the hood instead of just relying on slow defaults.
+              Hey, I&apos;m Piloh. I&apos;ve been programming for over 5 years, focusing on low-level systems, custom engines, and game mechanics in C++ and Luau. I like building things from scratch and understanding what happens under the hood rather than sticking to high-level defaults.
             </p>
             <p className="text-zinc-400">
-              A lot of my projects involve pushing platform limits: streaming huge procedural voxel landscapes without melting memory, writing custom Vulkan pipelines with ECS, or building multiplayer combat that stays responsive even when connections get spotty.
+              Most of my work involves pushing platform limits: streaming huge procedural voxel landscapes without melting memory, writing custom Vulkan pipelines with ECS, or building multiplayer combat with tight kinematics and custom replication.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function Home() {
                 Programmer by trade (Technik Programista)
               </h3>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                I have a formal software education, not just random tutorial knowledge. I understand memory management, low-level data structures, and how code actually executes on the hardware.
+                Formal education in software development. Strong grasp of memory management, low-level data structures, and how code executes on real hardware.
               </p>
             </div>
 
@@ -109,7 +109,7 @@ export default function Home() {
                 Pushing Roblox past its usual limits
               </h3>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                I focus on the deep technical side that most developers shy away from. I like tackling things people assume the engine can&apos;t do—like 80k-voxel multi-threaded terrain or custom physics math.
+                I focus on the deep technical problems most developers avoid, like 80k-voxel multi-threaded terrain generation or custom physical kinematics.
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
                 Easy to work with in a team
               </h3>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                Zero ego. Fast and direct communication on Discord, clean git habits, and I adapt to whatever tools or workflows your team already has in place.
+                Zero ego. Fast and direct communication on Discord, clean git habits, and quick adaptation to whatever tools or workflows your team uses.
               </p>
             </div>
 
@@ -127,7 +127,7 @@ export default function Home() {
                 Code you can actually maintain
               </h3>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                I write clean, direct code that doesn&apos;t fall apart the moment another developer touches it. No bloated over-engineering or fragile spaghetti hacks.
+                Clean, readable code without unnecessary abstractions or fragile workarounds, so other developers can pick it up easily.
               </p>
             </div>
           </div>

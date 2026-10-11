@@ -58,33 +58,28 @@ export function CodePreview({ code, filename, language = 'luau', isPartOfProject
       transition={{ duration: 0.4 }}
     >
       {/* Tab bar */}
-      <div className="flex items-center justify-between bg-[#161b22] px-3 py-1.5 border-b border-white/5">
+      <div className="flex items-center justify-between bg-[#161b22] px-3.5 py-2 border-b border-zinc-800">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-          </div>
-          <span className="text-[10px] font-mono text-gray-400 ml-2">{filename}</span>
+          <span className="text-xs font-mono text-zinc-300 font-medium">{filename}</span>
           {isPartOfProject && (
-            <span className="text-[9px] font-mono text-gray-600 bg-white/5 px-1.5 py-0.5 rounded">
-              1 of many files
+            <span className="text-[10px] font-mono text-zinc-500 bg-zinc-800/80 px-1.5 py-0.5 rounded">
+              file preview
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-1">
-          <span className="text-[9px] font-mono text-gray-600 mr-2">{language}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-mono text-zinc-500">{language}</span>
           <button
             onClick={handleCopy}
-            className="p-1 rounded hover:bg-white/10 transition-colors text-gray-500 hover:text-cyan-400"
+            className="p-1 rounded hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white"
             title="Copy code"
             type="button"
           >
             <AnimatePresence mode="wait">
               {copied ? (
                 <motion.div key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                  <Check size={14} className="text-green-400" />
+                  <Check size={14} className="text-emerald-400" />
                 </motion.div>
               ) : (
                 <motion.div key="copy" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
@@ -95,7 +90,7 @@ export function CodePreview({ code, filename, language = 'luau', isPartOfProject
           </button>
           <button
             onClick={handleDownload}
-            className="p-1 rounded hover:bg-white/10 transition-colors text-gray-500 hover:text-orange-400"
+            className="p-1 rounded hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-white"
             title="Download file"
             type="button"
           >
@@ -124,7 +119,7 @@ export function CodePreview({ code, filename, language = 'luau', isPartOfProject
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="w-full flex items-center justify-center gap-1 py-1.5 bg-[#161b22] border-t border-white/5 text-[10px] font-mono text-gray-500 hover:text-cyan-400 transition-colors"
+          className="w-full flex items-center justify-center gap-1.5 py-2 bg-[#161b22] border-t border-zinc-800 text-[11px] font-mono text-zinc-400 hover:text-zinc-200 transition-colors"
           type="button"
         >
           {expanded ? (

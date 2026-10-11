@@ -18,9 +18,9 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Piloh - Game Systems Engineer",
+  title: "Piloh | Game Systems & Low-Level Developer",
   description:
-    "Game systems engineer specializing in C++ engines, Luau scripting, and high-performance gameplay frameworks. 5+ years building robust, scalable game mechanics.",
+    "Personal developer portfolio of Piloh. Low-level systems, custom game engines in C++, and performance-focused Luau architecture on Roblox.",
 };
 
 export default function RootLayout({

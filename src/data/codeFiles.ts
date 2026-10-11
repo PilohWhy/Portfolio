@@ -198,15 +198,8 @@ return M1Service`,
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local Knit = require(ReplicatedStorage.Packages.Knit)
-local GameConfig = require(ReplicatedStorage:WaitForChild("GameConfig"))
-
-local ParanoiaManager = Knit.CreateService {
-    Name = "ParanoiaManager",
-    Client = {
-        TriggerGlitch = Knit.CreateSignal(),
-    },
-}
+local ParanoiaManager = {}
+local triggerGlitchRemote = ReplicatedStorage:WaitForChild("TriggerGlitch") :: RemoteEvent
 
 local PARANOIA_MAX = 100
 local PARANOIA_MIN = 0
@@ -214,28 +207,28 @@ local ISOLATION_DISTANCE = 100
 local INCREASE_RATE = 2
 local DECREASE_RATE = 5
 
-local ParanoiaLevels = {}
-local NextGlitchTimes = {}
-local GLITCH_TYPES = {"FakeLag", "AudioCut"}
+local paranoiaLevels: { [Player]: number } = {}
+local nextGlitchTimes: { [Player]: number } = {}
+local GLITCH_TYPES = { "FakeLag", "AudioCut" }
 
-function ParanoiaManager:GetParanoiaLevel(player: Player)
-    return ParanoiaLevels[player] or 0
+function ParanoiaManager.getParanoiaLevel(player: Player): number
+    return paranoiaLevels[player] or 0
 end
 
-function ParanoiaManager:KnitInit()
+function ParanoiaManager.init()
     for _, player in ipairs(Players:GetPlayers()) do
-        ParanoiaLevels[player] = 0
+        paranoiaLevels[player] = 0
     end
-    Players.PlayerAdded:Connect(function(player)
-        ParanoiaLevels[player] = 0
-    end)
-    Players.PlayerRemoving:Connect(function(player)
-        ParanoiaLevels[player] = nil
-        NextGlitchTimes[player] = nil
-    end)
-end
 
-function ParanoiaManager:KnitStart()
+    Players.PlayerAdded:Connect(function(player)
+        paranoiaLevels[player] = 0
+    end)
+
+    Players.PlayerRemoving:Connect(function(player)
+        paranoiaLevels[player] = nil
+        nextGlitchTimes[player] = nil
+    end)
+
     RunService.Heartbeat:Connect(function(deltaTime)
         local players = Players:GetPlayers()
         for i, player in ipairs(players) do
@@ -243,7 +236,7 @@ function ParanoiaManager:KnitStart()
             if not character then continue end
             local rootPart = character:FindFirstChild("HumanoidRootPart")
             if not rootPart then continue end
-            
+
             local isAlone = true
             for j, otherPlayer in ipairs(players) do
                 if i == j then continue end
@@ -251,35 +244,35 @@ function ParanoiaManager:KnitStart()
                 if not otherCharacter then continue end
                 local otherRoot = otherCharacter:FindFirstChild("HumanoidRootPart")
                 if not otherRoot then continue end
+
                 local distance = (rootPart.Position - otherRoot.Position).Magnitude
                 if distance <= ISOLATION_DISTANCE then
                     isAlone = false
                     break
                 end
             end
-            
-            local currentLevel = ParanoiaLevels[player] or 0
+
+            local currentLevel = paranoiaLevels[player] or 0
             if isAlone then
                 currentLevel += (INCREASE_RATE * deltaTime)
             else
                 currentLevel -= (DECREASE_RATE * deltaTime)
             end
             currentLevel = math.clamp(currentLevel, PARANOIA_MIN, PARANOIA_MAX)
-            ParanoiaLevels[player] = currentLevel
-            
-            -- Glitch triggering logic
+            paranoiaLevels[player] = currentLevel
+
             if currentLevel > 75 then
                 local now = os.clock()
-                local nextGlitch = NextGlitchTimes[player]
+                local nextGlitch = nextGlitchTimes[player]
                 if not nextGlitch then
-                    NextGlitchTimes[player] = now + math.random(10, 20)
+                    nextGlitchTimes[player] = now + math.random(10, 20)
                 elseif now >= nextGlitch then
                     local selectedGlitch = GLITCH_TYPES[math.random(1, #GLITCH_TYPES)]
-                    ParanoiaManager.Client.TriggerGlitch:Fire(player, selectedGlitch)
-                    NextGlitchTimes[player] = now + math.random(10, 20)
+                    triggerGlitchRemote:FireClient(player, selectedGlitch)
+                    nextGlitchTimes[player] = now + math.random(10, 20)
                 end
             else
-                NextGlitchTimes[player] = nil
+                nextGlitchTimes[player] = nil
             end
         end
     end)
